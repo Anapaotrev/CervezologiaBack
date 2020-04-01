@@ -39,7 +39,7 @@ const logout = function(req, res) {
 }
 
 const getUser = function(req, res) {
-    User.findById(req.user._id).populate('events').then(function(user) {
+    User.findById(req.user._id).then(function(user) {
         return res.send(user)
     }).catch(function(error) {
         return res.status(404).send({})
