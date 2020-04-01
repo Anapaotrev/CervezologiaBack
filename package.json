@@ -1,0 +1,19 @@
+{
+  "name": "cervezologia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anapaotrev/CervezologiaBack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anapaotrev/CervezologiaBack/issues"
+  },
+  "homepage": "https://github.com/Anapaotrev/CervezologiaBack#readme"
+}
