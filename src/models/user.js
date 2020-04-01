@@ -30,7 +30,10 @@ const userSchema = mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    external_id: {
+        type: String
+    }
 })
 
 userSchema.methods.generateToken = function() {
