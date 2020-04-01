@@ -8,3 +8,5 @@ router.get("/beers", beers.getBeers)
 router.post("/beer", beers.newBeer)
 router.patch("/beer", beers.updateBeer)
 router.detele("/beer", beers.deleteBeer)
+
+module.exports = router

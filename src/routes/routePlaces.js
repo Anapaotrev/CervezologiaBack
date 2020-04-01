@@ -8,3 +8,5 @@ router.get("/places", beers.getPlaces)
 router.post("/place", beers.newPlace)
 router.patch("/place", beers.updatePlace)
 router.detele("/place", beers.deletePlace)
+
+module.exports = router
