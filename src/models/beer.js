@@ -6,7 +6,7 @@ const beerSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    cerveceria: {
+    brewery: {
         type: String,
         required: true
     },
