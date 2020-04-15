@@ -14,6 +14,16 @@ const getBeers = function(req, res) {
     })
 }
 
+const getDistinct = function(req, res) {
+    var value = req.query.value
+
+    Beer.collection.distinct(value).then(function(beers) {
+        res.send(beers)
+    }).catch(function(error) {
+        res.status(500).send(error)
+    });
+}
+
 const getBeer = function(req, res) {
     const _id = req.params.id
     Beer.findOne({ _id }).then(function(beer) {
@@ -64,5 +74,6 @@ module.exports = {
     getBeer,
     newBeer,
     updateBeer,
-    deleteBeer
+    deleteBeer,
+    getDistinct
 }
