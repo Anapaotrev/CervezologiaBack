@@ -10,7 +10,7 @@ const getBeers = function(req, res) {
 
 const getBeer = function(req, res) {
     const _id = req.params.id
-    Beer.findOne(_id).then(function(beer) {
+    Beer.findOne({ _id }).then(function(beer) {
         if (!beer) {
             return res.status(404).send({ error: `Beer with id ${_id} not found.` })
         }
