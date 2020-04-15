@@ -1,7 +1,13 @@
 const Beer = require('../models/beer')
 
 const getBeers = function(req, res) {
-    Beer.find({}).then(function(beers) {
+    var filters = {}
+
+    if (req.query.brewery) filters.brewery = req.query.brewery
+    if (req.query.origin) filters.origin = req.query.origin
+    if (req.query.style) filters.style = req.query.style
+
+    Beer.find(filters).then(function(beers) {
         res.send(beers)
     }).catch(function(error) {
         res.status(500).send(error)
