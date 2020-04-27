@@ -5,12 +5,31 @@ const placeSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String
+    },
+    schedule: {
+        type: String
+    },
+    instagram: {
+        type: String
+    },
+    website: {
+        type: String
+    },
+    phoneNo: {
+        type: String
+    },
     address: {
+        type: String
+    },
+    lat: {
         type: String,
         required: true
     },
-    description: {
-        type: String
+    lng: {
+        type: String,
+        required: true
     }
 })
 
