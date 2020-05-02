@@ -1,7 +1,11 @@
 const Place = require('../models/place')
 
 const getPlaces = function(req, res) {
-    Place.find({}).then(function(places) {
+    var filters = {}
+
+    if (req.query.category) filters.category = req.query.category
+
+    Place.find(filters).then(function(places) {
         res.send(places)
     }).catch(function(error) {
         res.status(500).send(error)
