@@ -4,10 +4,10 @@ const auth = require('../middleware/auth');
 const diaries = require("../controllers/diaries")
 
 
-router.get("/diary/:id/:beer", auth, diaries.getDiary)
-router.get("/diaries/:id", auth, diaries.getDiaries)
-router.post("/diary/:id/:beer", auth, diaries.newBeer)
-router.patch("/diary/:id/:beer", auth, diaries.updateBeer)
-router.delete("/diary/:id/:beer", auth,  diaries.deleteBeer)
+router.get("/diary/:id", auth, diaries.getDiary)
+router.get("/diaries", auth, diaries.getDiaries)
+router.post("/diary", auth, diaries.newDiary)
+router.patch("/diary/:id", auth, diaries.updateDiary)
+router.delete("/diary/:id", auth,  diaries.deleteDiary)
 
 module.exports = router

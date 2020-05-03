@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
 
 const diarySchema = mongoose.Schema({
     text: {
@@ -11,7 +10,7 @@ const diarySchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    createdFor:{
+    beer:{
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'Beer'
