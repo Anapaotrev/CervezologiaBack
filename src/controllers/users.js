@@ -9,20 +9,14 @@ const getUsers = function(req, res) {
 }
 
 const login = function(req, res) {
-    console.log(req.body.email)
-    console.log(req.body.password)
-
     User.findByCredentials(req.body.email, req.body.password)
         .then(function(user) {  
             user.generateToken().then(function(token){
-                console.log('generate')
                 return res.send({ user, token })
             }).catch(function(error){
-                console.log('cant generate')
                 return res.status(401).send({ error: error })
             })
         }).catch(function(error) {
-            console.log('cant find')
             return res.status(401).send({ error: error })
         })
 }
