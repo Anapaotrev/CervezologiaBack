@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const diarySchema = mongoose.Schema({
-    text: {
+    notes: {
         type: String,
         required: true
     },
@@ -10,11 +10,23 @@ const diarySchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    beer:{
+    rating: {
+        type: Number,
+        required: true
+    },
+    beer: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: 'Beer'
-    }
+    },
+    newBeer: {
+        abv: String,
+        name: String, 
+        ibu: String,
+        origin: String,
+        photos: [String],
+        srm: String,
+        style: String
+    },
 })
 
 const Diary = mongoose.model('Diary', diarySchema)

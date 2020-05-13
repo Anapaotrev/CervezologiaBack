@@ -24,8 +24,10 @@ const getDiary = function(req, res) {
 const newDiary = function(req, res) {
     const diary = new Diary({
         createdBy: req.user._id,
-        text: req.body.text,
-        beer: req.body.beer
+        beer: req.body.beer,
+        newBeer: req.body.newBeer,
+        rating: req.body.rating,
+        notes: req.body.notes
     })
 
     diary.save().then(function() {
