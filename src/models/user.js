@@ -52,7 +52,7 @@ userSchema.methods.generateToken = function() {
 userSchema.statics.findByCredentials = function(email, password) {
     return new Promise(function(resolve, reject) {
         User.findOne({ email }).then(function(user) {
-            if (!email) {
+            if (!user) {
                 return reject('User does not exist')
             } 
             bcryptjs.compare(password, user.password).then(function(match) {

@@ -1,7 +1,7 @@
 const Diary = require('../models/diary')
 
 const getDiaries = function(req, res) {
-    Diary.find({ createdBy: req.user._id }).then(function(diaries) {
+    Diary.find({ createdBy: req.user._id }).populate("beer").then(function(diaries) {
         res.send(diaries)
     }).catch(function(error){
         res.status(500).send(error)
@@ -11,7 +11,7 @@ const getDiaries = function(req, res) {
 const getDiary = function(req, res) {
     const _id = req.params.id
 
-    Diary.findOne({ _id }).then(function(diary) {
+    Diary.findOne({ _id }).populate("beer").then(function(diary) {
         if (!diary) {
             return res.status(404).send({ error: `Diary with id ${_id} not found.` })
         }
