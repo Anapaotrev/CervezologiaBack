@@ -23,7 +23,7 @@ const diarySchema = mongoose.Schema({
         name: String, 
         ibu: String,
         origin: String,
-        photos: [String],
+        photoUrl: String,
         srm: String,
         style: String
     },
