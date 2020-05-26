@@ -52,10 +52,10 @@ const newUser = function(req, res) {
 const updateUser = function(req, res) {
     const _id = req.user.id
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['name', 'password', 'email']
+    const allowedUpdates = ['name', 'password', 'email', 'favorites']
     // revisa que los updates enviados sean permitidos, que no envie una key que no permitimos
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
-
+    
     if( !isValidUpdate ) {
         return res.status(400).send({
         error: 'Invalid update, only allowed to update: ' + allowedUpdates

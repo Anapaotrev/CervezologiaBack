@@ -33,7 +33,11 @@ const userSchema = mongoose.Schema({
     }],
     external_id: {
         type: String
-    }
+    },
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Beer'
+    }]
 })
 
 userSchema.methods.generateToken = function() {
