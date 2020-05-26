@@ -55,7 +55,7 @@ const updateUser = function(req, res) {
     const allowedUpdates = ['name', 'password', 'email', 'favorites']
     // revisa que los updates enviados sean permitidos, que no envie una key que no permitimos
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
-    
+
     if( !isValidUpdate ) {
         return res.status(400).send({
         error: 'Invalid update, only allowed to update: ' + allowedUpdates
@@ -83,6 +83,15 @@ const deleteUser = function(req, res) {
     })
 }
 
+const getFavorites = function(req, res) {
+    const _id = req.user.id
+    User.findById(_id).then(function(user) {
+        return res.send(user.favorites)
+    }).catch(function(error) {
+        return res.status(404).send({})
+    })
+}
+
 module.exports = {
     login,
     logout,
@@ -90,5 +99,6 @@ module.exports = {
     getUser,
     newUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getFavorites
 }
