@@ -14,10 +14,10 @@ const login = function(req, res) {
             user.generateToken().then(function(token){
                 return res.send({ user, token })
             }).catch(function(error){
-                return res.status(401).send({ error: error })
+                return res.status(400).send({ error: error })
             })
         }).catch(function(error) {
-            return res.status(401).send({ error: error })
+            return res.status(400).send({ error: error })
         })
 }
 
