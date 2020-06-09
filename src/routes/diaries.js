@@ -6,6 +6,7 @@ const diaries = require("../controllers/diaries")
 
 router.get("/diary/:id", auth, diaries.getDiary)
 router.get("/diaries", auth, diaries.getDiaries)
+router.get("/my_diaries/", auth, diaries.getUserDiaries)
 router.post("/diary", auth, diaries.newDiary)
 router.patch("/diary/:id", auth, diaries.updateDiary)
 router.delete("/diary/:id", auth,  diaries.deleteDiary)

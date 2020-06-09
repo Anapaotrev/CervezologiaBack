@@ -1,6 +1,14 @@
 const Diary = require('../models/diary')
 
 const getDiaries = function(req, res) {
+    Diary.find({}).populate("beer").then(function(diaries) {
+        res.send(diaries)
+    }).catch(function(error){
+        res.status(500).send(error)
+    })
+}
+
+const getUserDiaries = function(req, res) {
     Diary.find({ createdBy: req.user._id }).populate("beer").then(function(diaries) {
         res.send(diaries)
     }).catch(function(error){
@@ -64,6 +72,7 @@ const deleteDiary = function(req, res) {
 module.exports = {
     getDiary,
     getDiaries,
+    getUserDiaries,
     newDiary,
     updateDiary,
     deleteDiary

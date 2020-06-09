@@ -23,12 +23,16 @@ AdminBro.registerAdapter(require('admin-bro-mongoose'))
 const adminBro = new AdminBro({
   resources: [User, Beer, Diary, Place],
   rootPath: '/admin',
+  branding: {
+    companyName: 'Cervezología',
+    softwareBrothers: false
+  },
 })
 
 const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
     const user = await User.findOne({ email })
-    if (user) {
+    if (user.role === 'admin') {
       const matched = await bcryptjs.compare(password, user.password)
       if (matched) {
         return user
