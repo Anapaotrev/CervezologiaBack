@@ -46,7 +46,6 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
 app.use(adminBro.options.rootPath, router)
 app.use(cors())
 app.use(express.json())
-app.use(express.static('src'));
 app.use('/', userRoutes, placeRoutes, beerRoutes, diaryRoutes);
 
 app.listen(port, function() {
