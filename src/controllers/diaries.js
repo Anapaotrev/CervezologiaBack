@@ -5,6 +5,7 @@ const getDiaries = function (req, res) {
   Diary.find({})
     .populate("beer")
     .populate("createdBy")
+    .populate("comments")
     .then(function (diaries) {
       res.send(diaries);
     })
@@ -17,6 +18,7 @@ const getUserDiaries = function (req, res) {
   Diary.find({ createdBy: req.user._id })
     .populate("beer")
     .populate("createdBy")
+    .populate("comments")
     .then(function (diaries) {
       res.send(diaries);
     })
@@ -31,6 +33,7 @@ const getUsernameDiaries = function (req, res) {
       Diary.find({ createdBy: user._id })
         .populate("beer")
         .populate("createdBy")
+        .populate("comments")
         .then((diaries) => {
           res.send(diaries);
         })
@@ -43,11 +46,32 @@ const getUsernameDiaries = function (req, res) {
     });
 };
 
+const addCommentToDiary = function (req, res) {
+  const _id = req.params.id;
+  const { comment } = req.body;
+  Diary.findOneAndUpdate(_id, {
+    $push: { comments: { comment, user: req.user._id } },
+  })
+    .then(function (diary) {
+      if (!diary) {
+        return res
+          .status(404)
+          .send({ error: `Diary with id ${_id} not found.` });
+      }
+      return res.send(diary);
+    })
+    .catch(function (error) {
+      res.status(500).send(error);
+    });
+};
+
 const getDiary = function (req, res) {
   const _id = req.params.id;
 
   Diary.findOne({ _id })
     .populate("beer")
+    .populate("comments")
+    .populate("createdBy")
     .then(function (diary) {
       if (!diary) {
         return res
@@ -118,4 +142,5 @@ module.exports = {
   updateDiary,
   deleteDiary,
   getUsernameDiaries,
+  addCommentToDiary,
 };

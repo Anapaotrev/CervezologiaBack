@@ -8,6 +8,7 @@ router.get("/diaries", auth, diaries.getDiaries);
 router.get("/my_diaries/", auth, diaries.getUserDiaries);
 router.get("/diaries_by/:username", diaries.getUsernameDiaries);
 router.post("/diary", auth, diaries.newDiary);
+router.post("/diary/add_comment/:id", auth, diaries.addCommentToDiary);
 router.patch("/diary/:id", auth, diaries.updateDiary);
 router.delete("/diary/:id", auth, diaries.deleteDiary);
 
