@@ -5,6 +5,7 @@ const getDiaries = function (req, res) {
   Diary.find({})
     .populate("beer")
     .populate("createdBy")
+    .populate("comments.user", "-password")
     .then(function (diaries) {
       res.send(diaries);
     })
@@ -17,6 +18,7 @@ const getUserDiaries = function (req, res) {
   Diary.find({ createdBy: req.user._id })
     .populate("beer")
     .populate("createdBy")
+    .populate("comments.user", "-password")
     .then(function (diaries) {
       res.send(diaries);
     })
@@ -31,6 +33,7 @@ const getUsernameDiaries = function (req, res) {
       Diary.find({ createdBy: user._id })
         .populate("beer")
         .populate("createdBy")
+        .populate("comments.user", "-password")
         .then((diaries) => {
           res.send(diaries);
         })
@@ -67,7 +70,7 @@ const getDiary = function (req, res) {
 
   Diary.findOne({ _id })
     .populate("beer")
-    .populate("createdBy")
+    .populate("comments.user", "-password")
     .then(function (diary) {
       if (!diary) {
         return res
