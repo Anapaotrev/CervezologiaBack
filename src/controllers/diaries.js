@@ -49,9 +49,12 @@ const getUsernameDiaries = function (req, res) {
 const addCommentToDiary = function (req, res) {
   const _id = req.params.id;
   const { comment } = req.body;
-  Diary.findOneAndUpdate(_id, {
-    $push: { comments: { comment, user: req.user._id } },
-  })
+  Diary.findOneAndUpdate(
+    { _id },
+    {
+      $push: { comments: { comment, user: req.user._id } },
+    }
+  )
     .then(function (diary) {
       if (!diary) {
         return res
