@@ -46,8 +46,7 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
 app.use(adminBro.options.rootPath, router)
 app.use(cors())
 app.use(express.json())
-app.use(express.static('public'));
-app.use('/api/', userRoutes, placeRoutes, beerRoutes, diaryRoutes);
+app.use('/', userRoutes, placeRoutes, beerRoutes, diaryRoutes);
 
 app.listen(port, function() {
   console.log('Server up and running on port ' + port)
